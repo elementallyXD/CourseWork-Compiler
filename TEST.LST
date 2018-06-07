@@ -1,0 +1,75 @@
+Microsoft (R) Macro Assembler Version 5.00                  5/24/18 08:07:36
+                                                             Page     1-1
+
+
+				;Bidyak Mikahilo KV-61 V-1 
+				.386 
+ 0000				DATA SEGMENT 
+ 0000  7B			      Idb1   DB		1111011B 
+ 0001  54 65 73 74		      Ids2	 DB		"Test" 
+ 0005  083C			      Idw3   DW		2108D 
+ 0007  21B10000			      Idd4   DD		0b121H 
+ 000B  07C7				  Val1   DW     1991 
+ 000D  00000044 R			  Val2   DD     label2 
+ 0011				DATA ENDS 
+				ASSUME CS:CODE,DS:DATA 
+ 0000				CODE SEGMENT 
+ 0000					label1: 
+ 0000  FA					CLI 
+ 0001  FE C3					INC BL 
+ 0003  40					INC EAX 
+ 0004  67| 66| FF 8F 0005 R			DEC Idw3[BX] 
+ 000A  03 D8					ADD EBX, EAX 
+ 000C  65: 20 87 00000001 R			AND GS:Ids2[EDI], AL 
+ 0013  20 9E 00000001 R				AND Ids2[ESI], BL 
+ 0019  3E: 67| 66| 3B 9E 0005			CMP BX, Idw3[BP] 
+	R			
+ 0020  03 C1					ADD EAX, ECX 
+ 0022  0F 82 00000044 R				JB label2 
+ 0028  66| B8 0155				MOV AX, 155H 
+ 002C  B3 09					MOV BL, 9 
+ 002E  66| 31 86 0000000B R			XOR DS:Val1[ESI], AX 
+ 0035  67| 66| 83 8C 000B R			OR Val1[SI], 22H 
+       22			
+ 003C  EB C2					JMP label1 
+ 003E  FF 25 0000000D R				JMP Val2 
+ 0044				   label2: 
+ 0044				CODE ENDS 
+				END 
+Microsoft (R) Macro Assembler Version 5.00                  5/24/18 08:07:36
+                                                             Symbols-1
+
+
+
+
+                N a m e         	Size	Length	 Align	Combine Class
+
+CODE . . . . . . . . . . . . . .  	32 Bit	0044	PARA	NONE	
+DATA . . . . . . . . . . . . . .  	32 Bit	0011	PARA	NONE	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+IDB1 . . . . . . . . . . . . . .  	L BYTE	0000	DATA
+IDD4 . . . . . . . . . . . . . .  	L DWORD	0007	DATA
+IDS2 . . . . . . . . . . . . . .  	L BYTE	0001	DATA
+IDW3 . . . . . . . . . . . . . .  	L WORD	0005	DATA
+
+LABEL1 . . . . . . . . . . . . .  	L NEAR	0000	CODE
+LABEL2 . . . . . . . . . . . . .  	L NEAR	0044	CODE
+
+VAL1 . . . . . . . . . . . . . .  	L WORD	000B	DATA
+VAL2 . . . . . . . . . . . . . .  	L DWORD	000D	DATA
+
+@FILENAME  . . . . . . . . . . .  	TEXT  Test		
+
+
+     32 Source  Lines
+     32 Total   Lines
+     12 Symbols
+
+  51064 + 465480 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors
