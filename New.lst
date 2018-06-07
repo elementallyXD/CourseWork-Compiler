@@ -1,0 +1,47 @@
+0000   DATA SEGMENT
+0000         Idb1   DB		1111011B
+0001         Ids2	 DB		"Test"
+0005         Idw3   DW		2108D
+0007         Idd4   DD		0b121H
+000B   	  Val1   DW     1991
+000D   	  Val2   DD     label2
+0011   DATA ENDS
+   ASSUME CS:CODE,DS:DATA
+0000   CODE SEGMENT
+0000   	label1:
+0000   		CLI
+0001   		INC BL
+0003   		INC EAX
+0004   		DEC Idw3[BX]
+000A   		AND GS:Ids2[EDI], AL
+0011   		AND Ids2[ESI], BL
+0017   		CMP BX, Idw3[BP]
+001E   		ADD EAX, ECX
+0020   		JB label2
+0026   		MOV AX, 155H
+002A   		MOV BL, 9
+002C   		XOR DS:Val1[ESI], AX
+0033   		OR Val1[SI], 22H
+003A   		JMP label1
+003C   		JMP Val2
+0042      label2:
+0042   CODE ENDS
+   END
+
+
+	 Name			Size	Length	Align	Combine Class
+DATA.............	 32 bit   0011	PARA	NONE
+CODE.............	 32 bit   0042	PARA	NONE
+
+
+Symbols:
+
+	 Name			Type	Value	Attr
+IDB1.............	L BYTE	0000	DATA
+IDS2.............	L BYTE	0001	DATA
+IDW3.............	L WORD	0005	DATA
+IDD4.............	L DWORD	0007	DATA
+VAL1.............	L WORD	000B	DATA
+VAL2.............	L DWORD	000D	DATA
+LABEL1...........	L BYTE	0000	DATA
+LABEL2...........	L BYTE	0001	DATA
